@@ -1,36 +1,91 @@
 import express from "express";
 
 import {
-  createMovie,
+  addMovie,
   getAllMovies,
-  getMoviesByReleaseYear,
+  getMovieById,
+  updateMovie,
+  deleteMovie,
   getMoviesByRating,
-  getMoviesByPrice,
+  getMoviesByRatingLessThan,
+  getMoviesByRatingGte,
+  getMoviesByRatingLte,
+  getMoviesByGenreNotEqual,
+  getMoviesByGenreIn,
+  getMoviesByGenreNin,
+  getMoviesByOr,
+  getMoviesByAnd,
+  getMoviesByFieldExists,
+  searchMoviesByName,
+  getMoviesSorted,
+  getLimitedMovies,
+  getSkippedMovies,
+  getMoviesPagination,
+  getMoviesByReleaseYear,
+  getMoviesByPriceRange,
   getMoviesByGenre,
-  getAvailableMovies,
-  getMovieById
+  getMoviesByBookingStatus,
+  filterMovies
 } from "../controllers/movieController.js";
 
 const router = express.Router();
 
 // Create Movie
-router.post("/", createMovie);
+router.post("/add", addMovie);
 
 // Get All Movies
-router.get("/", getAllMovies);
+ router.get("/", getAllMovies);
 
-// Search Movies
-router.get("/released-after", getMoviesByReleaseYear);
+ // Search Movies
+ router.get("/rating/greater", getMoviesByRating);
 
-router.get("/rating-above", getMoviesByRating);
+ router.get("/rating/less", getMoviesByRatingLessThan);
 
-router.get("/price-range", getMoviesByPrice);
+ router.get("/rating/greater-equal", getMoviesByRatingGte);
 
-router.get("/genre", getMoviesByGenre);
+ router.get("/rating/less-equal", getMoviesByRatingLte);
 
-router.get("/available", getAvailableMovies);
+ router.get("/genre/in", getMoviesByGenreIn);
 
-// Get Movie by ID
-router.get("/:id", getMovieById);
+ router.get("/genre/not-equal", getMoviesByGenreNotEqual);
+
+ router.get("/genre/not-in", getMoviesByGenreNin);
+
+ router.get("/filter/or", getMoviesByOr);
+
+ router.get("/filter/or", getMoviesByAnd);
+
+ router.get("/filter/exists", getMoviesByFieldExists);
+
+ router.get("search", searchMoviesByName);
+
+ router.get("/sort", getMoviesSorted);
+
+ router.get("/limit", getLimitedMovies);
+
+ router.get("/skip", getSkippedMovies); 
+
+ router.get("/pagination", getMoviesPagination);
+
+ router.get("/release-year", getMoviesByReleaseYear);
+
+ router.get("/price-range", getMoviesByPriceRange);
+
+ router.get("/genre", getMoviesByGenre);
+
+ router.get("/booking-status", getMoviesByBookingStatus);
+
+ router.get("/filter", filterMovies);
+
+
+
+ // Get Movie by ID
+ router.get("/:id", getMovieById);
+
+ // Update Movie
+ router.put("/:id", updateMovie);
+
+ // Delete Movie
+ router.delete("/:id", deleteMovie);
 
 export default router;

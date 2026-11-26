@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const movieSchema = new mongoose.Schema(
   {
-    movieName: {
+    name: {
       type: String,
       required: true,
       trim: true
